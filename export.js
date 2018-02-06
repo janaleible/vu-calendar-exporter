@@ -34,7 +34,7 @@ function parseDate(date) {
 
     return [
         dateMoment.year(),
-        dateMoment.month(),
+        dateMoment.month() + 1,
         dateMoment.date(),
         dateMoment.hour(),
         dateMoment.minute()
