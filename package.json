@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/janaleible/vu-calendar-exporter#readme",
   "dependencies": {
-    "ics": "^2.0.1",
+    "ics": "git+https://github.com/joariasl/ics.git",
     "moment": "^2.20.1",
     "request": "^2.83.0",
     "save": "^2.3.2",
