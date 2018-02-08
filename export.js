@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let xmlParser = require('xml2js').parseString;
 let fileSystem = require('fs');
@@ -8,7 +8,10 @@ let uuid = require('uuid');
 
 // let url = 'https://webapi.login.vu.nl/api/study/Events/51505135/EN/29-01-2018/01-04-2018';
 
-let xml = fileSystem.readFile('./advanced-logic.xml', {encoding: 'utf8'}, function (error, xml) {
+let filename = process.argv[2];
+let calendarName = filename.split('.')[0] + '.ics';
+
+fileSystem.readFile(filename, {encoding: 'utf8'}, function (error, xml) {
     xmlParser(xml, (error, schedule) => {
         ics.createCalendar(
             schedule.ArrayOfEvent.Event.map((event) => {
@@ -22,7 +25,7 @@ let xml = fileSystem.readFile('./advanced-logic.xml', {encoding: 'utf8'}, functi
                     uid: uuid.v4()
                 };
             }), {}, (error, calendar) => {
-                fileSystem.writeFile('calendar.ics', calendar)
+                fileSystem.writeFile(calendarName, calendar)
             }
         );
     });
